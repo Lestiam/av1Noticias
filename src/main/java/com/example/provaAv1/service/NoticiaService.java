@@ -37,9 +37,19 @@ public class NoticiaService {
 
         if(responseEntity.getStatusCode().is2xxSuccessful()) {
             String responseBody = responseEntity.getBody();
+
+            NoticiaEntity noticiaEntity = new NoticiaEntity();
+            noticiaEntity.setResponseBody(responseBody);
+
+            noticiaRepository.save(noticiaEntity);
+
             return responseBody;
         } else {
             return "Nãoo foi possível buscar as notícias e as releases";
         }
+    }
+
+    public void inserirNoticia(NoticiaEntity noticia) {
+        noticiaRepository.save(noticia);
     }
 }
